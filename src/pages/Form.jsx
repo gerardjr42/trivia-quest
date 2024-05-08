@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 //Path based on user's form ex: https://opentdb.com/api.php?amount=20&category=9&difficulty=medium&type=boolean
 
-export default function Form({setQuestionaire, questionaire}) {
+export default function Form({setQuestionaire}) {
   let navigate = useNavigate();
 
   const catURL = "https://opentdb.com/api_category.php";
@@ -41,7 +41,7 @@ export default function Form({setQuestionaire, questionaire}) {
   //! Change the logic of the url path below, make a function that outputs the url based if user selects options. If use sells any for any input then don't input that state variable. Ex: if Category is set to any then just skip, don't add.
   //?Ternary expression in a function?
   //useEffect for custom API Path based on user's input in form.
-  useEffect(() => {
+  function fetchData() {
     if (!amount) return;
     // fetch(`${baseURL}?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`)
     fetch(
@@ -56,11 +56,12 @@ export default function Form({setQuestionaire, questionaire}) {
       .then((data) => setQuestionaire(data.results))
       .catch((error) => console.error(error));
     // }, [questionaire]);
-    }, [amount, category, difficulty, type]);
+    }
 
 
   function handleSubmit(e) {
     e.preventDefault();
+    fetchData();
     navigate("/trivia")
   }
 

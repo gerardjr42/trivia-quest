@@ -14,7 +14,7 @@ export default function Trivia({questionaire}) {
  //?How should I display the data? Make it so one question shows at a time? Or a list, similar to a test?
   return (
     <>
-    <h1 className="mb-4 text-center text-3xl text-white">Trivia Start</h1>
+    <h1 className="mb-4 text-center text-6xl text-white">Trivia Quest</h1>
     {questionaire.map((question, i) => {
       return (
         <Question question={question} key={i}/>

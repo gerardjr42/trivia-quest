@@ -12,30 +12,30 @@ export default function Question({ question }) {
   */
 
   //Create the fisher-yates shuffle function using Array.protype
-  Array.prototype.shuffle = function() {
+  Array.prototype.shuffle = function () {
     let i = this.length, j, temp;
-    while(--i > 0){
-      j = Math.floor(Math.random() * (i+1));
+    while (--i > 0) {
+      j = Math.floor(Math.random() * (i + 1));
       temp = this[j];
       this[j] = this[i];
       this[i] = temp;
     }
     return this;
-  }
+  };
 
-  const choices = [...question.incorrect_answers, question.correct_answer]
+  const choices = [...question.incorrect_answers, question.correct_answer];
   const randomShuffle = choices.shuffle();
-  console.log(randomShuffle)
+  console.log(randomShuffle);
   return (
-    <div className="mx-auto flex w-[50%] flex-col mb-8">
-      <h1>{he.decode(question.question)}</h1>
-        {choices.map((choice, i) => {
-          return (
-            <p key={i}>
-              {`${i+1}: ${he.decode(choice)}`}
-            </p>
-          )
-        })}
+    <div className="mx-auto mb-8 flex w-[50%] flex-col">
+      <h1 className="text-2xl mb-2">{he.decode(question.question)}</h1>
+      {choices.map((choice, i) => {
+        return (
+          <p key={i} className="mb-2 rounded-md bg-white py-2 pl-2 hover:bg-[#178FF2] hover:text-white">
+            {`${i + 1}: ${he.decode(choice)}`}
+          </p>
+        );
+      })}
     </div>
   );
 }
